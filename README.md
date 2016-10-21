@@ -7,7 +7,7 @@ In particular, I've been reading:
 
 OpenCV can be downloaded from http://opencv.org. Your download will contain the
 native library files (which will be different for each operating system) but you
-will also to compile the Java interfaces into a JAR file.
+will also to compile the Java interfaces into a JAR file..
 
 You'll need to use cmake to create the Makefile and then make the JAR file in $OPENCV_HOME/bin/opencv-300.jar
 
