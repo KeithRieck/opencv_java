@@ -15,8 +15,7 @@ public class SeeRedApp extends VideoApp {
 
 	@Override
 	public Mat run(Mat src) {
-		processor.setsource0(src);
-		processor.process();
+		processor.process(src);
 		Mat dst = processor.hsvThresholdOutput();
 		return dst;
 	}
