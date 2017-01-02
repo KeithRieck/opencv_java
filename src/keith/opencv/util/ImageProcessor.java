@@ -4,5 +4,5 @@ import org.opencv.core.Mat;
 
 public interface ImageProcessor {
 
-	public Mat processor(Mat src);
+	public Mat process(Mat src);
 }

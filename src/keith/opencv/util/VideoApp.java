@@ -8,14 +8,13 @@ import java.awt.event.MouseEvent;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
-import org.opencv.core.MatOfInt4;
 import org.opencv.videoio.VideoCapture;
 import org.opencv.videoio.Videoio;
 
 /**
  * Repeatedly capture images from the camera, transform, and then display.
  */
-public abstract class VideoApp {
+public class VideoApp {
 
 	final boolean DEBUG = "true".equalsIgnoreCase(System.getProperty("debug"));
 
@@ -33,8 +32,10 @@ public abstract class VideoApp {
 	protected int mouseY = -1;
 	protected VideoCapture camera = null;
 	protected double exposure = -1.0;
+	public final ImageProcessor imageProcessor;
 
-	public VideoApp(int width, int height) {
+	public VideoApp(ImageProcessor imageProcessor, int width, int height) {
+		this.imageProcessor = imageProcessor;
 		this.width = width;
 		this.height = height;
 	}
@@ -73,7 +74,7 @@ public abstract class VideoApp {
 		while (true) {
 			Mat src = readCamera();
 			if (keyPressed == null) {
-				src = run(src);
+				src = imageProcessor.process(src);
 			}
 			videoViewer.imshow(src);
 			if ((mouseX > -1) && (src instanceof MatOfByte)) {
@@ -109,7 +110,5 @@ public abstract class VideoApp {
 		this.camera.read(img);
 		return img;
 	}
-
-	public abstract Mat run(Mat img);
 
 }
