@@ -71,6 +71,8 @@ public class VideoApp {
 			}
 		});
 
+		int frameCount = 0;
+		long time = System.currentTimeMillis() + 1000L;
 		while (true) {
 			Mat src = readCamera();
 			if (keyPressed == null) {
@@ -87,6 +89,12 @@ public class VideoApp {
 				}
 				mouseX = -1;
 				mouseY = -1;
+			}
+			frameCount++;
+			if (System.currentTimeMillis() > time) {
+				if (DEBUG) { System.err.println("fps: " + frameCount); }
+				time = System.currentTimeMillis() + 1000L;
+				frameCount = 0;
 			}
 		}
 	}
